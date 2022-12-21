@@ -19,6 +19,10 @@
     "puppeteer-extra-plugin-stealth": "^2.11.1"
   },
   "pkg": {
-    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*"
+    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*",
+    "scripts": ["node_modules/puppeteer/lib/*.js", "node_modules/puppeteer-extra-plugin-stealth/**/*.js"]
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
