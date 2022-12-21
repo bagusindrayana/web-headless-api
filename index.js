@@ -46,8 +46,8 @@ const responseHeadersToRemove = ["Accept-Ranges", "Content-Length", "Keep-Alive"
     // if (process.env.PUPPETEER_PROXY)
     //     options.args.push(`--proxy-server=${process.env.PUPPETEER_PROXY}`);
     // const browser = await puppeteer.launch(options);
-    
-    const browser = await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=d7f96a2a-c778-4d6d-a483-fe1f77d59710' });
+    var browserless_token = process.env.BROWSERLESS_TOKEN;
+    const browser = (browserless_token!=null && browserless_token != undefined)?await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token='+browserless_token }):await puppeteer.launch(options);
 
     app.use(async ctx => {
         if (ctx.query.url) {
@@ -133,7 +133,7 @@ const responseHeadersToRemove = ["Accept-Ranges", "Content-Length", "Keep-Alive"
             ctx.body = responseData;
         }
         else {
-            ctx.body = "Please specify the URL in the 'url' query string.";
+            ctx.body = "Please specify the URL in the 'url' query string. "+browserless_token;
         }
     });
     console.log("Listen on port 3000");
