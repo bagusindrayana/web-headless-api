@@ -37,17 +37,17 @@ const responseHeadersToRemove = ["Accept-Ranges", "Content-Length", "Keep-Alive"
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox','--enable-features=ExperimentalJavaScript']
     };
-    if (process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD)
-        options.executablePath = '/usr/bin/chromium-browser';
-    if (process.env.PUPPETEER_HEADFUL)
-        options.headless = false;
-    if (process.env.PUPPETEER_USERDATADIR)
-        options.userDataDir = process.env.PUPPETEER_USERDATADIR;
-    if (process.env.PUPPETEER_PROXY)
-        options.args.push(`--proxy-server=${process.env.PUPPETEER_PROXY}`);
+    // if (process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD)
+    //     options.executablePath = '/usr/bin/chromium-browser';
+    // if (process.env.PUPPETEER_HEADFUL)
+    //     options.headless = false;
+    // if (process.env.PUPPETEER_USERDATADIR)
+    //     options.userDataDir = process.env.PUPPETEER_USERDATADIR;
+    // if (process.env.PUPPETEER_PROXY)
+    //     options.args.push(`--proxy-server=${process.env.PUPPETEER_PROXY}`);
     // const browser = await puppeteer.launch(options);
     
-    const browser =(process.env.BROWSERLESS_TOKEN)? await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token='+process.env.BROWSERLESS_TOKEN }):await puppeteer.launch(options);
+    const browser = await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=d7f96a2a-c778-4d6d-a483-fe1f77d59710' });
 
     app.use(async ctx => {
         if (ctx.query.url) {
