@@ -128,8 +128,12 @@ const responseHeadersToRemove = ["Accept-Ranges", "Content-Length", "Keep-Alive"
             }
 
             await page.close();
-            responseHeadersToRemove.forEach(header => delete responseHeaders[header]);
-            Object.keys(responseHeaders).forEach(header => ctx.set(header, jsesc(responseHeaders[header])));
+            try {
+                responseHeadersToRemove.forEach(header => delete responseHeaders[header]);
+                Object.keys(responseHeaders).forEach(header => ctx.set(header, jsesc(responseHeaders[header])));
+            } catch (error) {
+                
+            }
             ctx.body = responseData;
         }
         else {
