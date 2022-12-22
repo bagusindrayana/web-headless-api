@@ -2,13 +2,12 @@
 1. Install NodeJS
 2. `npm install`
 3. `npm start`
+4. open `http://localhost:3000/?url=https://example.org`
 
-# How to use
-Send your request to the server with the port 3000 and add your URL to the "url" query string like this:
-`http://localhost:3000/?url=https://example.org`
+# Cloud Browserless
+if you want use cloud version of browserless, you need:
+- change enviroment `BROWSERLESS_TOKEN` or fill `browserless_token` in `index.js`  with token from [Browserless](https://www.browserless.io/)
 
-To show the browser window, set the environment variable `PUPPETEER_HEADFUL=1`. To use a proxy,
-set the `PUPPETEER_PROXY` environment variable, for example `PUPPETEER_PROXY=localhost:8080`. To specify user data directory, set `PUPPETEER_USERDATADIR=/path/to/dir`.
+use cloud version of browserless if you don't want to use chromium on your pc (because its very heavy) and using cloud hardware
 
-# Docker
-Available as a Docker image here: https://quay.io/repository/unixfox/pupflare
+
