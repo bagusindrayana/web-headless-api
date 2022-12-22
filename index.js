@@ -129,10 +129,23 @@ const responseHeadersToRemove = ["Accept-Ranges", "Content-Length", "Keep-Alive"
 
             await page.close();
             try {
-                responseHeadersToRemove.forEach(header => delete responseHeaders[header]);
-                Object.keys(responseHeaders).forEach(header => ctx.set(header, jsesc(responseHeaders[header])));
-            } catch (error) {
+                if(responseHeaders != null && responseHeaders != undefined){
+                    responseHeadersToRemove.forEach(header => {
+                        if(responseHeaders[header] != null && responseHeaders[header] != undefined){
+                            delete responseHeaders[header];
+                        }
+                        
+                    });
+                    Object.keys(responseHeaders).forEach(header => {
+                        if(responseHeaders[header] != null && responseHeaders[header] != undefined){
+                            ctx.set(header, jsesc(responseHeaders[header]));
+                        }
+                        
+                    });
+                }
                 
+            } catch (error) {
+                console.log(error);
             }
             ctx.body = responseData;
         }
